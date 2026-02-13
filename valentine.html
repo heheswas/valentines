@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Hitam 💗</title>
+
+<style>
+@font-face {
+    font-family: 'Floraison';
+    src: url('Floraison.ttf') format('truetype');
+}
+
+body {
+    margin: 0;
+    overflow: hidden;
+    background-color: #F5C0D3;
+    font-family: 'Floraison', cursive;
+    text-align: center;
+}
+
+/* MAIN TEXT */
+#mainText, #loveMessage {
+    font-size: 24px;
+    margin-top: 80px;
+    padding: 20px;
+    color: #83394A;
+    animation: bounce 2.5s ease-in-out infinite;
+}
+
+#loveMessage {
+    display: none;
+    font-size: 20px;
+}
+
+/* BUTTONS */
+button {
+    padding: 14px 24px;
+    font-size: 16px;
+    border-radius: 30px;
+    border: 3px solid white;
+    background-color: deeppink;
+    color: white;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    position: absolute;
+}
+
+#yesBtn { left: 20%; bottom: 15%; }
+#noBtn { right: 20%; bottom: 15%; }
+
+/* BOUNCE */
+@keyframes bounce {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+}
+
+/* FLOATING HEARTS */
+.heart {
+    position: absolute;
+    font-size: 18px;
+    animation: floatUp 5s linear forwards;
+}
+
+@keyframes floatUp {
+    from { transform: translateY(100vh); opacity:1; }
+    to { transform: translateY(-10vh); opacity:0; }
+}
+
+/* CONFETTI */
+.confetti {
+    position: absolute;
+    font-size: 18px;
+    animation: fall 3s linear forwards;
+}
+
+@keyframes fall {
+    from { transform: translateY(-10vh); }
+    to { transform: translateY(100vh); }
+}
+
+/* VINYL CONTAINER TOP CORNER */
+#vinylContainer {
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    text-align: center;
+    z-index: 1000;
+}
+
+/* VINYL */
+#vinyl {
+    width: 70px;
+    height: 70px;
+    background: radial-gradient(circle at center, #111 30%, black 60%, #222 100%);
+    border-radius: 50%;
+    border: 4px solid #83394A;
+    position: relative;
+    margin: 0 auto;
+    box-shadow: 0 0 15px rgba(131,57,74,0.6);
+}
+
+#vinyl::after {
+    content: '';
+    width: 18px;
+    height: 18px;
+    background: #F5C0D3;
+    border-radius: 50%;
+    position: absolute;
+    top: 26px;
+    left: 26px;
+}
+
+/* TAP TEXT */
+#tapText {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    background: #83394A;
+    padding: 6px 10px;
+    border-radius: 20px;
+    margin-bottom: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    animation: pulse 1.5s infinite;
+}
+
+/* Pulse to make visible */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.08); }
+    100% { transform: scale(1); }
+}
+
+/* SPIN */
+.spin {
+    animation: spin 3s linear infinite;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+</style>
+</head>
+
+<body>
+
+<audio id="bgMusic" src="music.mp3" loop></audio>
+<audio id="yaySound" src="yay.mp3"></audio>
+
+<!-- VINYL TOP CORNER -->
+<div id="vinylContainer">
+    <div id="tapText">TAP FOR MUSIC 🎵</div>
+    <div id="vinyl"></div>
+</div>
+
+<h1 id="mainText">
+Hiiiii Hitubabyyy ୨♡୧<br><br>
+Do you want to be my valentine?????<br><br>
+I have the biggest crush on you!!<br><br>
+I love you sosoosoos much
+</h1>
+
+<button id="yesBtn">Yes ( ˶˘ ³˘)♡</button>
+<button id="noBtn">No ｡°(°.◜ᯅ◝°)°｡</button>
+
+<div id="loveMessage">
+I knew it ♡♡♡<br><br>
+I love you sososos fucking much.<br><br>
+Main apko kha hi jau yarrrr.<br><br>
+I'm so in love with you.<br><br>
+Bade cute ho main def gareebo ko khilati thi.<br><br>
+I love you baby.
+</div>
+
+<script>
+
+/* VINYL MUSIC */
+const vinyl = document.getElementById('vinyl');
+const bgMusic = document.getElementById('bgMusic');
+const tapText = document.getElementById('tapText');
+
+vinyl.addEventListener('click', () => {
+    bgMusic.currentTime = 25;
+    bgMusic.play();
+    vinyl.classList.add('spin');
+    tapText.style.display = 'none';
+});
+
+/* FLOATING HEARTS */
+setInterval(() => {
+    const heart = document.createElement('div');
+    heart.className = 'heart';
+    heart.innerHTML = '💘';
+    heart.style.left = Math.random()*100+'vw';
+    document.body.appendChild(heart);
+    setTimeout(()=>heart.remove(),5000);
+}, 1200);
+
+/* NO BUTTON MOBILE */
+const noBtn = document.getElementById('noBtn');
+noBtn.addEventListener('click', () => {
+    noBtn.style.left = Math.random()*60+'vw';
+    noBtn.style.bottom = Math.random()*50+'vh';
+});
+
+/* YES BUTTON */
+const yesBtn = document.getElementById('yesBtn');
+const mainText = document.getElementById('mainText');
+const loveMessage = document.getElementById('loveMessage');
+const yay = document.getElementById('yaySound');
+
+yesBtn.addEventListener('click', () => {
+    mainText.style.display='none';
+    yesBtn.style.display='none';
+    noBtn.style.display='none';
+    loveMessage.style.display='block';
+
+    yay.play();
+
+    for(let i=0;i<30;i++){
+        const confetti=document.createElement('div');
+        confetti.className='confetti';
+        confetti.innerHTML='💘';
+        confetti.style.left=Math.random()*100+'vw';
+        document.body.appendChild(confetti);
+        setTimeout(()=>confetti.remove(),3000);
+    }
+});
+
+</script>
+
+</body>
+</html>
